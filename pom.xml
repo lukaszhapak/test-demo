@@ -1,69 +1,353 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>demo</description>
-    <properties>
-        <java.version>11</java.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.10</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>demo</name>
+	<description>demo</description>
+	<properties>
+		<java.version>11</java.version>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.12</version>
-        </dependency>
+		<!--		Spring  -->
+		<spring-boot.version>2.7.10</spring-boot.version>
+		<spring-kafka.version>2.8.11</spring-kafka.version>
+		<spring-kafka-test.version>2.6.3</spring-kafka-test.version>
+		<spring-cloud-starter-openfeign.version>3.1.4</spring-cloud-starter-openfeign.version>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+		<!--		Util -->
+		<lombok.version>1.18.24</lombok.version>
+		<rest-assured.version>5.3.1</rest-assured.version>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+		<!--		Data base -->
+		<h2.version>2.1.214</h2.version>
+		<postgresql.version>42.2.23</postgresql.version>
+		<mysql.version>8.0.33</mysql.version>
+		<flyway.version>9.4.0</flyway.version>
+		<shedlock.version>4.30.0</shedlock.version>
+		<p6spy.version>3.9.1</p6spy.version>
+
+		<!--		Test -->
+		<junit-jupiter-engine.version>5.5.2</junit-jupiter-engine.version>
+		<testcontainers.version>1.16.3</testcontainers.version>
+		<pitest-maven.version>1.15.8</pitest-maven.version>
+		<pitest-junit5-plugin.version>1.1.2</pitest-junit5-plugin.version>
+		<wiremock.version>3.0.1</wiremock.version>
+		<spring-cloud-starter-contract-stub-runner.version>3.1.7
+		</spring-cloud-starter-contract-stub-runner.version>
+		<spock.version>2.4-M1-groovy-4.0</spock.version>
+		<archunit-junit4.version>1.2.1</archunit-junit4.version>
+		<quick-perf.version>1.1.0</quick-perf.version>
+		<datasource-proxy-spring-boot-starter.version>1.9.1
+		</datasource-proxy-spring-boot-starter.version>
+		<flexy-pool-spring-boot-starter.version>1.9.1</flexy-pool-spring-boot-starter.version>
+		<mockserver-netty.version>5.11.2</mockserver-netty.version>
+		<restito.version>0.9.3</restito.version>
+	</properties>
+
+	<!--	SPRING	-->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-batch</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>${spring-kafka.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>${spring-cloud-starter-openfeign.version}</version>
+		</dependency>
+
+		<!--	UTIL	-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+			<version>${lombok.version}</version>
+		</dependency>
+		<dependency> <!--	http client	-->
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<exclusions>  <!-- Exclude Groovy because of classpath issue, collision with spring-cloud-starter-contract-stub-runner -->
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy-xml</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy-json</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--	DATA BASE	-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+		<dependency>  <!--	jdbc interceptor for logging executed sql, see spy.properties		-->
+			<groupId>p6spy</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>${p6spy.version}</version>
+		</dependency>
+
+		<!--	TEST	-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka-test</artifactId>
+			<version>${spring-kafka.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>spock</artifactId>
+			<version>${testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency> <!--			@AutoConfigureWireMock(port = 0)-->
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+			<version>${spring-cloud-starter-contract-stub-runner.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit4</artifactId>
+			<version>${archunit-junit4.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>   <!--		 @ExpectSelect(1) -->
+			<groupId>org.quickperf</groupId>
+			<artifactId>quick-perf-junit5</artifactId>
+			<version>${quick-perf.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.quickperf</groupId>
+			<artifactId>quick-perf-springboot2-sql-starter</artifactId>
+			<version>${quick-perf.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mock-server</groupId>
+			<artifactId>mockserver-netty</artifactId>
+			<version>${mockserver-netty.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.xebialabs.restito</groupId>
+			<artifactId>restito</artifactId>
+			<version>${restito.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+<!--		<dependency>    &lt;!&ndash;		logging connection details &ndash;&gt;-->
+<!--			<groupId>com.github.gavlyukovskiy</groupId>-->
+<!--			<artifactId>datasource-proxy-spring-boot-starter</artifactId>-->
+<!--			<version>${datasource-proxy-spring-boot-starter.version}</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.github.gavlyukovskiy</groupId>-->
+<!--			<artifactId>flexy-pool-spring-boot-starter</artifactId>-->
+<!--			<version>${flexy-pool-spring-boot-starter.version}</version>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-core</artifactId>
+			<version>${spock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-spring</artifactId>
+			<version>${spock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+								<version>3.0.0</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.*</include>
+						<include>**/*Spec.*</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>2.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compileTests</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.9.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>${pitest-maven.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>${pitest-junit5-plugin.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>pit-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>mutationCoverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+
+					<targetClasses>
+						<param>com.example.demo.test.unit.pitest.*</param>
+					</targetClasses>
+					<targetTests>
+						<param>com.example.demo.test.unit.pitest.*</param>
+					</targetTests>
+
+					<mutators>
+						<!--						https://pitest.org/quickstart/mutators/   -->
+						<!--						passing here name of the group activates all mutators in given group-->
+
+						<!--						<mutator>DEFAULTS</mutator>-->
+						<!--						<mutator>STRONGER</mutator>-->
+						<mutator>ALL</mutator>
+
+						<!--						alternatively you can put here list of mutators to activated them-->
+
+						<!--						<mutator>CONDITIONALS_BOUNDARY</mutator>-->
+						<!--						<mutator>CONSTRUCTOR_CALLS</mutator>-->
+						<!--						<mutator>VOID_METHOD_CALLS</mutator>-->
+						<!--						<mutator>NON_VOID_METHOD_CALLS</mutator>-->
+						<!--						<mutator>EMPTY_RETURNS</mutator>-->
+						<!--						<mutator>NULL_RETURNS</mutator>-->
+						<!--						<mutator>FALSE_RETURNS</mutator>-->
+						<!--						<mutator>PRIMITIVE_RETURNS</mutator>-->
+						<!--						<mutator>INCREMENTS</mutator>-->
+						<!--						<mutator>INVERT_NEGS</mutator>-->
+						<!--						<mutator>TRUE_RETURNS</mutator>-->
+						<!--						<mutator>INLINE_CONSTS</mutator>-->
+						<!--						<mutator>MATH</mutator>-->
+						<!--						<mutator>NEGATE_CONDITIONALS</mutator>-->
+						<!--						<mutator>REMOVE_CONDITIONALS_EQUAL_ELSE</mutator>-->
+						<!--						<mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>-->
+						<!--						<mutator>REMOVE_CONDITIONALS_ORDER_ELSE</mutator>-->
+						<!--						<mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>-->
+						<!--						<mutator>REMOVE_INCREMENTS</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_BIG_INTEGER</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>-->
+						<!--						<mutator>EXPERIMENTAL_SWITCH</mutator>-->
+
+					</mutators>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

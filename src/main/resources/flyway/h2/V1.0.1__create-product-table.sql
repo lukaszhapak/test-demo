@@ -1,0 +1,1 @@
+create table product (id bigint not null, name varchar(255) not null, integer_value integer not null, primary key (id));
