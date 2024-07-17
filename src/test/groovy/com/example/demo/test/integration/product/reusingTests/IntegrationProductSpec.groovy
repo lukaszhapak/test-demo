@@ -1,6 +1,7 @@
 package com.example.demo.test.integration.product.reusingTests
 
 import com.example.demo.test.integration.product.data.Product
+import com.example.demo.test.integration.product.http.server.ErrorDTO
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,9 +21,7 @@ class IntegrationProductSpec extends AbstractProductSpec {
 
     @Override
     Product saveProduct(Product product) {
-        /// using http or message queue or whatever
-
-        postHttpCall("/api/product", 200, sampleProduct, Product.class)
+        postHttpCall("/api/product", 200, product, Product.class)
     }
 
     @Override
@@ -30,37 +29,10 @@ class IntegrationProductSpec extends AbstractProductSpec {
         getHttpCall("/api/product/" + id, 200, Product.class)
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    ErrorDTO saveInvalidProduct(Product product) {
+        postHttpCall("/api/product", 400, product, ErrorDTO.class)
+    }
 
 
 
