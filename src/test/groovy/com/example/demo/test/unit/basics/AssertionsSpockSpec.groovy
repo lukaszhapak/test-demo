@@ -34,6 +34,14 @@ class AssertionsSpockSpec extends Specification {
         }
     }
 
+    def "another verify all example"() {
+        expect:
+        verifyAll(new Customer(1, "John", 24)) {
+            name == "John"
+            age == 24
+        }
+    }
+
     def "multiple when then blocks"() {
         given:
         CustomerDTO customerDTO = new CustomerDTO("John", 24)
