@@ -1,15 +1,12 @@
 package com.example.demo.test.unit.basics
 
 
-import com.example.demo.test.unit.basics.customer.CustomerRepository
 import com.example.demo.test.unit.basics.number.NumberService
 import spock.lang.Specification
 
 class ExceptionSpockSpec extends Specification {
 
     NumberService numberService = Stub()
-
-    CustomerRepository customerRepository = Stub()
 
     def "should throw exception from stubbed service and verify exception class"() {
         given:
