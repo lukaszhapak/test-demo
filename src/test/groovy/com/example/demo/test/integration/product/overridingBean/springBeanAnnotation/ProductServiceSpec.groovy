@@ -1,4 +1,4 @@
-package com.example.demo.test.integration.product.contextRestart.mockBean
+package com.example.demo.test.integration.product.overridingBean.springBeanAnnotation
 
 import com.example.demo.test.integration.product.SampleProducts
 import com.example.demo.test.integration.product.http.client.ProductHttpClient
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class SecondProductServiceSpec extends Specification implements SampleProducts {
+class ProductServiceSpec extends Specification implements SampleProducts {
 
     @Autowired
     ProductService productService

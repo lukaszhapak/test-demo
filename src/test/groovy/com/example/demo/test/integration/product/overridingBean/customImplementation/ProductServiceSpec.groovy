@@ -1,26 +1,20 @@
-package com.example.demo.test.integration.product.contextRestart.mockBean
+package com.example.demo.test.integration.product.overridingBean.customImplementation
 
 import com.example.demo.test.integration.product.SampleProducts
-import com.example.demo.test.integration.product.http.client.ProductHttpClient
 import com.example.demo.test.integration.product.service.ProductService
-import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import spock.lang.Specification
 
-@SpringBootTest
-class SecondProductServiceSpec extends Specification implements SampleProducts {
+@SpringBootTest(properties = "spring.main.allow-bean-definition-overriding=true")
+@Import(SpecConfig)
+class ProductServiceSpec extends Specification implements SampleProducts {
 
     @Autowired
     ProductService productService
 
-    @SpringBean
-    ProductHttpClient productHttpClient = Stub()
-
     def "should save product"() {
-        given:
-        productHttpClient.getValue() >> "321"
-
         when:
         Long id = productService.save(sampleProduct).getId()
         productService.assignValueFromExternalService(id)
