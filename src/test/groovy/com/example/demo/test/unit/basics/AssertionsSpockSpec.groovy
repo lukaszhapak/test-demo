@@ -66,7 +66,10 @@ class AssertionsSpockSpec extends Specification {
                                        new CustomerDTO("Michael", 27)]
 
         then:
-        customers.stream().allMatch { it.getAge() < 30 }
-        customers.stream().noneMatch { it.getName().size() > 12 }
+        customers.stream().allMatch {
+            it.age < 30
+                    && it.name.size() > 2
+        }
+        customers.stream().noneMatch { it.name.size() > 12 }
     }
 }
