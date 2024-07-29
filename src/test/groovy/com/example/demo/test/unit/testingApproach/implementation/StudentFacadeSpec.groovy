@@ -25,7 +25,7 @@ class StudentFacadeSpec extends Specification {
         StudentDTO response = studentFacade.save(studentDTO)
 
         then:
-        response.getName() == "John"
+        response.name == "John"
         1 * studentEventPublisher.publishStudentSavedEvent(_)
         1 * studentRepository.save(_)
     }

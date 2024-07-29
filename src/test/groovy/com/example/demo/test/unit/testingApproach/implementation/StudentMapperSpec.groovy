@@ -13,9 +13,9 @@ class StudentMapperSpec extends Specification {
         StudentDTO mapped = studentMapper.toDTO(student)
 
         then:
-        mapped.getId() == 1
-        mapped.getAge() == 21
-        mapped.getName() == "John"
+        mapped.id == 1
+        mapped.age == 21
+        mapped.name == "John"
     }
 
     def "should map to domain"() {
@@ -23,9 +23,9 @@ class StudentMapperSpec extends Specification {
         Student mapped = studentMapper.toDomain(studentDTO)
 
         then:
-        mapped.getId() == 1
-        mapped.getAge() == 21
-        mapped.getName() == "John"
+        mapped.id == 1
+        mapped.age == 21
+        mapped.name == "John"
     }
 
 }

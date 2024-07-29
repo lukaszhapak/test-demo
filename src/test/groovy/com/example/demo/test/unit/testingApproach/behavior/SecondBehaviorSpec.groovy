@@ -15,7 +15,7 @@ class SecondBehaviorSpec extends Specification {
         StudentDTO response = studentFacade.save(student)
 
         then:
-        response.getName() == "John"
+        response.name == "John"
         1 * studentEventPublisher.publishStudentSavedEvent(_)
         1 * studentRepository.save(_)
     }

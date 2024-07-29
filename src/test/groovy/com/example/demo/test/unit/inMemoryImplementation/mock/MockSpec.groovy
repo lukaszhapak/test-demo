@@ -11,7 +11,7 @@ class MockSpec extends Specification {
 
     def "should save valid student and publish event"() {
         when:
-        studentFacade.save(student).getId()
+        studentFacade.save(student)
 
         then:
         1 * studentEventPublisher.publishStudentSavedEvent(_)
@@ -22,7 +22,7 @@ class MockSpec extends Specification {
         studentRepository.findById(12) >> new Student(12, "John", 22)
 
         expect:
-        studentFacade.findById(12).getName() == 'John'
+        studentFacade.findById(12).name == 'John'
     }
 
     def "should get by name"() {
@@ -30,6 +30,6 @@ class MockSpec extends Specification {
         studentRepository.findByName("John") >> new Student(12, "John", 22)
 
         expect:
-        studentFacade.findByName("John").getName() == 'John'
+        studentFacade.findByName("John").name == 'John'
     }
 }

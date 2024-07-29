@@ -38,7 +38,7 @@ class StubSpockSpec extends Specification {
 
     def "should save and return customer stubbed with argument matcher"() {
         given:
-        customerRepository.save({ it.name == "John" && it.age == 23 } as Customer) >> new Customer(12, "John", 23)
+        customerRepository.save({ it.name == "John" && it.age == 23 }) >> new Customer(12, "John", 23)
 
         when:
         Customer customer = customerService.save(new Customer("John", 23))
@@ -46,5 +46,22 @@ class StubSpockSpec extends Specification {
         then:
         customer.name == "John"
         customer.age == 23
+    }
+
+    def "should execute custom save method"() {
+        given:
+        customerRepository.save(_) >> { args -> customSave(args[0]) }
+
+        when:
+        Customer customer = customerService.save(new Customer("John", 23))
+
+        then:
+        customer.name == "John"
+        customer.age == 23
+    }
+
+    Customer customSave(Customer customer) {
+        // execute custom logic here
+        customer
     }
 }

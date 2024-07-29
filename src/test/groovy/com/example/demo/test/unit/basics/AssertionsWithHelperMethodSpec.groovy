@@ -17,8 +17,8 @@ class AssertionsWithHelperMethodSpec extends Specification {
 
     // in case of model refactoring only one method requires changes
     void compareCustomers(CustomerDTO customerDTO1, CustomerDTO customerDTO2) {
-        assert customerDTO1.getName() == customerDTO2.getName()
-        assert customerDTO1.getAge() == customerDTO2.getAge()
+        assert customerDTO1.name == customerDTO2.name
+        assert customerDTO1.age == customerDTO2.age
     }
 
     // some more complex logic than in recursive comparison

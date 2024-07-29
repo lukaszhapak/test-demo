@@ -13,7 +13,7 @@ class InMemoryImplementationSpec extends Specification {
         StudentDTO response = studentFacade.save(student)
 
         then:
-        response.getName() == "John"
+        response.name == "John"
         studentEventPublisher.events.size() == 1
         studentEventPublisher.events.get(0).getName() == "John"
     }
@@ -23,7 +23,7 @@ class InMemoryImplementationSpec extends Specification {
         Long id = studentFacade.save(student).getId()
 
         expect:
-        studentFacade.findById(id).getName() == 'John'
+        studentFacade.findById(id).name == 'John'
     }
 
     def "should get by name"() {
@@ -31,6 +31,6 @@ class InMemoryImplementationSpec extends Specification {
         studentFacade.save(student)
 
         expect:
-        studentFacade.findByName("John").getName() == 'John'
+        studentFacade.findByName("John").name == 'John'
     }
 }

@@ -28,6 +28,6 @@ class ExceptionSpockSpec extends Specification {
 
         then:
         IllegalArgumentException thrown = thrown()
-        thrown.getMessage() == "test"
+        thrown.message == "test"
     }
 }

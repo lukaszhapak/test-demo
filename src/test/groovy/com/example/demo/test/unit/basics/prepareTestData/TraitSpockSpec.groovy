@@ -7,13 +7,13 @@ class TraitSpockSpec extends Specification implements SampleCustomers {
 
     def "should get customer from trait and change his name to Michael"() {
         expect:
-        john.getName() == "John"
+        john.name == "John"
         john.setName("Michael")
     }
 
     def "should get customer from trait and change his name to Jim"() {
         expect:
-        john.getName() == "John"
+        john.name == "John"
         john.setName("Jim")
     }
 }

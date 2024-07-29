@@ -17,7 +17,7 @@ class ThirdBehaviorSpec extends Specification {
         StudentDTO response = studentFacade.save(student)
 
         then:
-        response.getName() == "John"
+        response.name == "John"
         1 * studentEvenPublisher.publishStudentSavedEvent(_)
         1 * studentRepository.save(_)
     }

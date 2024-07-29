@@ -13,7 +13,7 @@ class ReflectionTestUtilsSpec extends Specification implements SampleCustomers {
 
     def "should not save invalid customer"() {
         given:
-        CustomerDTO customer = getCustomer(Map.of("name", "1"))
+        CustomerDTO customer = getCustomer(["name": "1"])
 
         expect:
         !customerValidator.validate(customer)

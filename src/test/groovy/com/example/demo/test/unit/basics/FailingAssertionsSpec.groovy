@@ -7,7 +7,7 @@ class FailingAssertionsSpec extends Specification {
 
     CustomerDTO customerDTO = new CustomerDTO("John", 24)
     List<Integer> list = [1, 2, 3, 4]
-//
+
 //    def "should assert list size value"() {
 //        expect:
 //        list.size() == 2
@@ -15,12 +15,12 @@ class FailingAssertionsSpec extends Specification {
 //
 //    def "should assert boolean value"() {
 //        expect:
-//        customerDTO.isBooleanValue()
+//        customerDTO.booleanValue
 //    }
 //
 //    def "should assert name"() {
 //        expect:
-//        customerDTO.getName() == "Michael"
+//        customerDTO.name == "Michael"
 //    }
 //
 //    def "should assert stream"() {

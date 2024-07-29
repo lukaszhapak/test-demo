@@ -50,13 +50,13 @@ class AssertionsSpockSpec extends Specification {
         customerDTO.setName("123")
 
         then:
-        customerDTO.getName() == "123"
+        customerDTO.name == "123"
 
         when:
         customerDTO.setName("321")
 
         then:
-        customerDTO.getName() == "321"
+        customerDTO.name == "321"
     }
 
     def "all match assertion"() {
