@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics
+package com.example.demo.test.unit.basics.mocks
 
 import com.example.demo.test.unit.basics.customer.Customer
 import com.example.demo.test.unit.basics.customer.CustomerRepository
@@ -12,6 +12,14 @@ class MockSpockSpec extends Specification {
 
     CustomerRepository customerRepository = Mock()
     CustomerService customerService = new CustomerService(customerRepository)
+
+    def "should verify call on void method of mocked service"() {
+        when:
+        numberService.returningVoid()
+
+        then:
+        1 * numberService.returningVoid()
+    }
 
     def "should verify call on mocked service"() {
         when:
@@ -50,7 +58,7 @@ class MockSpockSpec extends Specification {
 
         then:
         1 * customerRepository.save(_) >> { arguments -> savedCustomer = arguments[0] }
-        customer.name == savedCustomer.getName()
-        customer.age == savedCustomer.getAge()
+        savedCustomer.name == "John"
+        savedCustomer.age == 24
     }
 }

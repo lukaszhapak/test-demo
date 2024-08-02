@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics
+package com.example.demo.test.unit.basics.parameterized
 
 import spock.lang.Specification
 

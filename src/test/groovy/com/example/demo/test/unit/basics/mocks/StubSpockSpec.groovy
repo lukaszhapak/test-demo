@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics
+package com.example.demo.test.unit.basics.mocks
 
 import com.example.demo.test.unit.basics.customer.Customer
 import com.example.demo.test.unit.basics.customer.CustomerRepository
@@ -17,11 +17,8 @@ class StubSpockSpec extends Specification {
         given:
         numberService.returningInt() >> 3
 
-        when:
-        int number = numberService.returningInt()
-
-        then:
-        number == 3
+        expect:
+        numberService.returningInt() == 3
     }
 
     def "should get customer from stubbed repository"() {
@@ -61,7 +58,7 @@ class StubSpockSpec extends Specification {
     }
 
     Customer customSave(Customer customer) {
-        // execute custom logic here
+        // execute custom save logic here
         customer
     }
 }

@@ -2,7 +2,7 @@ package com.example.demo.test.unit.basics.prepareTestData
 
 
 import com.example.demo.test.unit.basics.customer.CustomerValidator
-import com.example.demo.test.unit.basics.util.SampleCustomers
+import com.example.demo.test.unit.basics.SampleCustomers
 import spock.lang.Specification
 
 class LombokChainedSetterSpec extends Specification implements SampleCustomers {
