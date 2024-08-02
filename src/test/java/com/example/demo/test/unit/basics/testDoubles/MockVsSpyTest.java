@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics.mockito;
+package com.example.demo.test.unit.basics.testDoubles;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;

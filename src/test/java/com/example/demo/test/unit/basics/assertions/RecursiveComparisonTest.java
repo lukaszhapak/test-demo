@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics.assertJ;
+package com.example.demo.test.unit.basics.assertions;
 
 import static com.example.demo.test.unit.basics.TestData.getCustomer;
 import static com.example.demo.test.unit.basics.TestData.getCustomerDTO;

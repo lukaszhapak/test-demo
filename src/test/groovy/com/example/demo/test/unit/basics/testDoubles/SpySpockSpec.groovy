@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics.mocks
+package com.example.demo.test.unit.basics.testDoubles
 
 import com.example.demo.test.unit.basics.customer.Customer
 import com.example.demo.test.unit.basics.customer.CustomerRepository

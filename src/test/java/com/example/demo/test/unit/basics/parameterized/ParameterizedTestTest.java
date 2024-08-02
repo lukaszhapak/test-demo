@@ -1,4 +1,4 @@
-package com.example.demo.test.unit.basics.junit;
+package com.example.demo.test.unit.basics.parameterized;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

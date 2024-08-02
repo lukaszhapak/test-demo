@@ -1,11 +1,10 @@
-package com.example.demo.test.unit.basics.failingAsserions;
+package com.example.demo.test.unit.basics.assertions;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.example.demo.test.unit.basics.customer.CustomerDTO;
 import java.util.List;
-import org.junit.jupiter.api.Test;
 
 class AssertJFailingAssertionsTest {
 
