@@ -13,7 +13,15 @@ class SpySpockSpec extends Specification {
     CustomerRepository customerRepository = Stub()
     CustomerService customerService = Spy(new CustomerService(customerRepository))
 
-    def "should get number from spy service"() {
+    def "should get number from stubbed method of spy service"() {
+        given:
+        numberService.returningInt() >> 3
+
+        expect:
+        numberService.returningInt() == 3
+    }
+
+    def "should get number from real method of spy service"() {
         expect:
         numberService.returningInt() == 5
     }
@@ -26,7 +34,7 @@ class SpySpockSpec extends Specification {
         customerService.findById(1).name == "John"
     }
 
-    def "should get customer from spy service with stubbed service"() {
+    def "should get customer from spy service with stubbed method"() {
         given:
         customerService.findById(1) >> new Customer(1, "John", 23)
 

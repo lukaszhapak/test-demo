@@ -38,11 +38,8 @@ class MockSpockSpec extends Specification {
     }
 
     def "should save customer and verify its fields"() {
-        given:
-        Customer customer = new Customer(1, "John", 24)
-
         when:
-        customerService.save(customer)
+        customerService.save(new Customer(1, "John", 24))
 
         then:
         1 * customerRepository.save({ it.name == "John" && it.age == 24 })

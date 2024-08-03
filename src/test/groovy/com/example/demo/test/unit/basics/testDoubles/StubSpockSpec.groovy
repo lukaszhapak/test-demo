@@ -45,9 +45,9 @@ class StubSpockSpec extends Specification {
         customer.age == 23
     }
 
-    def "should execute custom save method"() {
+    def "should return inserted value"() {
         given:
-        customerRepository.save(_) >> { args -> customSave(args[0]) }
+        customerRepository.save(_) >> { args -> args[0] }
 
         when:
         Customer customer = customerService.save(new Customer("John", 23))
@@ -57,8 +57,22 @@ class StubSpockSpec extends Specification {
         customer.age == 23
     }
 
+    def "should execute custom save method"() {
+        given:
+        customerRepository.save(_) >> { args -> customSave(args[0]) }
+
+        when:
+        Customer customer = customerService.save(new Customer("John", 23))
+
+        then:
+        customer.id == 1
+        customer.name == "John"
+        customer.age == 23
+    }
+
     Customer customSave(Customer customer) {
         // execute custom save logic here
+        customer.setId(1L)
         customer
     }
 }

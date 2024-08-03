@@ -19,6 +19,7 @@ class MockitoExtensionTest {
 
   @Mock
   CustomerRepository customerRepository;
+
   @InjectMocks
   CustomerService customerService;
 

@@ -1,8 +1,9 @@
 package com.example.demo.test.unit.basics.exception
 
-
 import com.example.demo.test.unit.basics.number.NumberService
 import spock.lang.Specification
+
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable
 
 class ExceptionSpockSpec extends Specification {
 
@@ -40,5 +41,18 @@ class ExceptionSpockSpec extends Specification {
         then:
         IllegalArgumentException thrown = thrown()
         thrown.message == "test"
+    }
+
+    def "should get throw exception from subbed service method executed in helper method"() {
+        given:
+        numberService.returningInt() >> { throw new IllegalArgumentException("test") }
+
+        expect:
+        getException().message == "test"
+    }
+
+    IllegalArgumentException getException() {
+        // using assertJ here i was not able to find a way how to do that in spock
+        catchThrowable(() -> numberService.returningInt())
     }
 }
