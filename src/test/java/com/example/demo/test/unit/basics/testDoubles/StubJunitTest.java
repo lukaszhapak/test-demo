@@ -3,6 +3,7 @@ package com.example.demo.test.unit.basics.testDoubles;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +27,20 @@ class StubJunitTest {
 
 	// then
 	assertThat(numberService.returningInt()).isEqualTo(3);
+  }
+
+  @Test
+  void shouldExecuteRealIntMethod() {
+	when(numberService.returningInt()).thenCallRealMethod();
+
+	assertThat(numberService.returningInt()).isEqualTo(5);
+  }
+
+  @Test
+  void shouldExecuteRealVoidMethod() {
+	doCallRealMethod().when(numberService).returningVoid();
+
+	numberService.returningVoid();
   }
 
   @Test

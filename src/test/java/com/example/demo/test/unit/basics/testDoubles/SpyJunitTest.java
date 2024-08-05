@@ -1,6 +1,7 @@
 package com.example.demo.test.unit.basics.testDoubles;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
@@ -32,15 +33,22 @@ class SpyJunitTest {
 
   @Test
   void shouldGetCustomerFromSpyServiceWithStubbedRepository() {
-	when(customerRepository.findById(1L)).thenReturn( new Customer(1L, "John", 23));
+	when(customerRepository.findById(1L)).thenReturn(new Customer(1L, "John", 23));
 
 	assertThat(customerService.findById(1L).getName()).isEqualTo("John");
   }
 
   @Test
   void shouldGetCustomerFromSpyServiceWithStubbedMethod() {
-	when(customerService.findById(1L)).thenReturn( new Customer(1L, "John", 23));
+	when(customerService.findById(1L)).thenReturn(new Customer(1L, "John", 23));
 
 	assertThat(customerService.findById(1L).getName()).isEqualTo("John");
+  }
+
+  @Test
+  void shouldDoNothing() {
+	doNothing().when(numberService).returningVoid();
+
+	numberService.returningVoid();
   }
 }
