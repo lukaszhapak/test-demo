@@ -23,12 +23,12 @@ abstract class AbstractContainerSpec extends Specification implements SampleProd
     @DynamicPropertySource
     static void getContainerConfig(DynamicPropertyRegistry registry) {
         postgres.start()
+        registry.add("spring.datasource.username", postgres::getUsername)
+        registry.add("spring.datasource.password", postgres::getPassword)
+        registry.add("spring.datasource.url", postgres::getJdbcUrl)
         println("Starting postgres database, connection details")
         println("Url = " + postgres.getJdbcUrl())
         println("username = " + postgres.getUsername())
         println("password = " + postgres.getPassword())
-        registry.add("spring.datasource.url", postgres::getJdbcUrl)
-        registry.add("spring.datasource.username", postgres::getUsername)
-        registry.add("spring.datasource.password", postgres::getPassword)
     }
 }
